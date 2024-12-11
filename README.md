@@ -18,6 +18,28 @@ Create a CustomSkipListener class to log skipped records in a package.
 4. Main Application 
 com.example.batchjob.BatchjobApplication.java
 
+5. Class Diagram
++------------------+      +-----------------+       +------------------+
+|   Transaction    |      |   BatchConfig   |       |  BatchJobApplication |
++------------------+      +-----------------+       +------------------+
+| - id: Long       |      | - reader()     |       | - main(String[]) |
+| - accountNumber  |      | - processor()  |       +------------------+
+| - trxAmount      |      | - writer()     |
+| - description    |      | - step1()      |
+| - trxDate        |      | - job()        |
+| - trxTime        |      +-----------------+
+| - customerId     |
++------------------+
+
+6. Activity Diagram
+Start -> Read File -> Process Record -> Write Record -> End
+         |
+         +--> Skipped if Exception
+
+
+7. Design Pattern
+Template Method Pattern: to define the skeleton of the batch process (read, process, write). Hence, it enables customization of specific steps (like: custom readers, processors, and writers) without changing the overall process flow.
+
 
 
 ### Reference Documentation
